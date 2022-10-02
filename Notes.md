@@ -9,6 +9,9 @@
 - The default styling/layout behavior of a `<View>` component uses [Flexbox](https://reactnative.dev/docs/flexbox) to organize its child components
 - [`alignItems`](https://reactnative.dev/docs/flexbox#align-items) positions elements along the cross axis. For `flexDirection: 'column'`, the cross axis is the horizontal axis
 - The core difference between `<FlatList>` and `<ScrollView>` is that [FlatList](https://bionicjulia.com/blog/react-native-scrollview-gotchas) optimizes scrolling by only rendering what's required. Sometimes you might want to use [`<RecyclerListView>`](https://blog.logrocket.com/recyclerlistview-vs-flatlist-long-lists-react-native)
+
+## Debugging
 - Define a new Expo [entry point](https://stackoverflow.com/a/58954195/1904223)
+- Install react-devtools: npm install -g react-devtool
 - Debug RN with [`react-devtools`](https://reactnative.dev/docs/debugging#react-developer-tools)
 - Toggle menu (press `m` or `Command D` on iOS or `Control M` on Android)
