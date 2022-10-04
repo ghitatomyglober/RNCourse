@@ -90,7 +90,7 @@ function GameScreen({userNumber, onGameOver} : Props) {
                         roundNumber={guessRoundsListLength - itemData.index}
                         guess={itemData.item}
                     />)}
-                keyExtractor={(item: number, index: number) => '${item}'}
+                keyExtractor={(item: number) => `${item}`}
             />
       </View>
     </View>
