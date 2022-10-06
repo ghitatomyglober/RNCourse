@@ -1,15 +1,16 @@
-import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
-import { registerRootComponent } from 'expo'
-import { LinearGradient } from 'expo-linear-gradient';
-import { useState, useCallback } from 'react';
+import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
+import { registerRootComponent } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
+import { useState, useCallback } from "react";
 import { preventAutoHideAsync, hideAsync } from "expo-splash-screen";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 
-import StartGameScreen from './screens/StartGameScreen';
-import GameScreen from './screens/GameScreen';
-import GameOverScreen from './screens/GameOverScreen';
-import Colors from './constants/Colors';
-import AppLoading from 'expo-app-loading';
+import StartGameScreen from "./screens/StartGameScreen";
+import GameScreen from "./screens/GameScreen";
+import GameOverScreen from "./screens/GameOverScreen";
+import Colors from "./constants/Colors";
+import AppLoading from "expo-app-loading";
+import { StatusBar } from "expo-status-bar";
 
 preventAutoHideAsync();
 
@@ -19,10 +20,10 @@ export default function App() {
   const [guessRounds, setGuessRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
-  
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await hideAsync();
@@ -30,17 +31,17 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <AppLoading />
+    return <AppLoading />;
   }
 
   function pickedNumberHandler(pickedNumber: string) {
-    setUserNumber(pickedNumber)
+    setUserNumber(pickedNumber);
     setGameIsOver(false);
   }
 
   function gameOverHandler(numberOfRounds: number) {
     setGameIsOver(true);
-    setGuessRounds(numberOfRounds)
+    setGuessRounds(numberOfRounds);
   }
 
   function startNewGameHandler() {
@@ -48,40 +49,45 @@ export default function App() {
     setGuessRounds(0);
   }
 
-  let screen = <StartGameScreen onPickNumber={pickedNumberHandler}/>;
-  
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+
   if (userNumber) {
-    screen = <GameScreen 
-                userNumber={Number(userNumber)}
-                onGameOver={gameOverHandler} 
-              />
+    screen = (
+      <GameScreen
+        userNumber={Number(userNumber)}
+        onGameOver={gameOverHandler}
+      />
+    );
   }
 
   if (gameIsOver && userNumber) {
-    screen =       
-    <GameOverScreen
-      userNumber={Number(userNumber)}
-      roundsNumber={guessRounds}
-      onStartNewGame={startNewGameHandler}
-  />
+    screen = (
+      <GameOverScreen
+        userNumber={Number(userNumber)}
+        roundsNumber={guessRounds}
+        onStartNewGame={startNewGameHandler}
+      />
+    );
   }
 
   return (
-    <LinearGradient
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
         onLayout={onLayoutRootView}
-        colors={[Colors.primary700, Colors.accent500]} 
-        style={styles.rootScreen}>
-      <ImageBackground 
-        source={require('./assets/images/background.png')}
-        resizeMode="cover"
+        colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView style={styles.rootScreen}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/background.png")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
@@ -90,8 +96,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backgroundImage: {
-    opacity: 0.15
-  }
+    opacity: 0.15,
+  },
 });
 
-registerRootComponent(App)
+registerRootComponent(App);
