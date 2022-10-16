@@ -11,6 +11,7 @@ import Meal from "../models/Meal";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../App";
 import type { RouteProp } from "@react-navigation/native";
+import IconButton from "../components/IconButton";
 
 type Props = {
   route: RouteProp<RootStackParamList, "MealDetail">;
@@ -28,7 +29,13 @@ function MealDetailScreen({ route, navigation }: Props) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button title="Tap me" onPress={headerButtonPressHandler} />;
+        return (
+          <IconButton
+            icon="star"
+            color="white"
+            onPress={headerButtonPressHandler}
+          />
+        );
       },
     });
   }, [navigation, headerButtonPressHandler]);
