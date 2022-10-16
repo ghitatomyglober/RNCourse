@@ -4,17 +4,21 @@ import CategoryGridTile from "../components/CategoryGridTitle";
 import { CATEGORIES } from "../data/dummy-data";
 import Category from "../models/Category";
 
-function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
-  return (
-    <CategoryGridTile
-      title={itemData.item.title}
-      color={itemData.item.color}
-      id={itemData.item.id}
-    />
-  );
-}
+function CategoriesScreen({ navigation }) {
+  function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
+    function pressHandler() {
+      navigation.navigate("MealsOverview");
+    }
 
-function CategoriesScreen() {
+    return (
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onPress={pressHandler}
+      />
+    );
+  }
+
   return (
     <FlatList
       data={CATEGORIES}
