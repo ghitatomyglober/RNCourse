@@ -1,7 +1,7 @@
 {
   "name": "rncourse",
   "version": "1.0.0",
-  "main": "./other-navigators/App",
+  "main": "./bottom-tabs-navigator/App",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
