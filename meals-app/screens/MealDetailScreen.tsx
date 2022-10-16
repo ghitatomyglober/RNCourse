@@ -8,14 +8,14 @@ import MealDetails from "../components/MealDetails";
 import { MEALS } from "../data/dummy-data";
 import Meal from "../models/Meal";
 
-import { StackNavigationProp } from "@react-navigation/stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import type { RouteProp } from "@react-navigation/native";
 import IconButton from "../components/IconButton";
 
 type Props = {
   route: RouteProp<RootStackParamList, "MealDetail">;
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 };
 
 function MealDetailScreen({ route, navigation }: Props) {

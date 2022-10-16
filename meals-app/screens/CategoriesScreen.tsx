@@ -1,5 +1,5 @@
 import { FlatList, ListRenderItemInfo } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import CategoryGridTile from "../components/CategoryGridTitle";
 
 import { CATEGORIES } from "../data/dummy-data";
@@ -7,7 +7,7 @@ import Category from "../models/Category";
 import { RootStackParamList } from "../App";
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 };
 
 function CategoriesScreen({ navigation }: Props) {

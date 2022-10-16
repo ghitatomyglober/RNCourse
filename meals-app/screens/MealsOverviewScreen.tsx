@@ -4,12 +4,12 @@ import MealItem from "../components/MealItem";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import Meal from "../models/Meal";
 import { useLayoutEffect } from "react";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 
 type Props = {
   route: RouteProp<RootStackParamList, "MealsOverview">;
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 };
 
 function MealsOverviewScreen({ route, navigation }: Props) {
