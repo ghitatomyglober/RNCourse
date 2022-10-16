@@ -1,10 +1,16 @@
 import { FlatList, ListRenderItemInfo } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import CategoryGridTile from "../components/CategoryGridTitle";
 
 import { CATEGORIES } from "../data/dummy-data";
 import Category from "../models/Category";
+import { RootStackParamList } from "../App";
 
-function CategoriesScreen({ navigation }) {
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, "MealsCategories">;
+};
+
+function CategoriesScreen({ navigation }: Props) {
   function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
     function pressHandler() {
       navigation.navigate("MealsOverview");

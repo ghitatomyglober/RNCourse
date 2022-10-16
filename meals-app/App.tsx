@@ -7,7 +7,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  MealsCategories: undefined;
+  MealsOverview: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
