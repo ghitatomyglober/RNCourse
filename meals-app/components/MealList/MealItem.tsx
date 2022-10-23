@@ -1,8 +1,8 @@
 import { View, Pressable, Text, Image } from "react-native";
-import { styles } from "./styles/MealItemStyles";
+import { styles } from "../styles/MealItemStyles";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../App";
-import type { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {
   id: string;
@@ -13,7 +13,7 @@ type Props = {
   affordability: string;
 };
 
-type RootScreenNavigationProp = StackNavigationProp<RootStackParamList>;
+type RootScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 function MealItem({
   id,

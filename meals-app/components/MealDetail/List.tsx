@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { styles } from "./styles/ListStyles";
+import { styles } from "../styles/ListStyles";
 
 type Props = {
   data: string[];

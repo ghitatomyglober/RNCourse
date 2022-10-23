@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { styles } from "./styles/SubtitleStyles";
+import { styles } from "../styles/SubtitleStyles";
 
 interface Props {
   children: JSX.Element | string | number;
