@@ -1,8 +1,6 @@
-import { View, FlatList, StyleSheet, ListRenderItemInfo } from "react-native";
 import type { RouteProp } from "@react-navigation/native";
-import MealItem from "../components/MealItem";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
-import Meal from "../models/Meal";
+import MealsList from "../components/MealList/MealsList";
 import { useLayoutEffect } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
@@ -29,36 +27,7 @@ function MealsOverviewScreen({ route, navigation }: Props) {
     });
   }, [catId, navigation]);
 
-  function renderMealItem(itemData: ListRenderItemInfo<Meal>) {
-    const item = itemData.item;
-
-    const mealItemProps = {
-      id: item.id,
-      title: item.title,
-      imageUrl: item.imageUrl,
-      affordability: item.affordability,
-      complexity: item.complexity,
-      duration: item.duration,
-    };
-    return <MealItem {...mealItemProps} />;
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  );
+  return <MealsList items={displayedMeals} />;
 }
 
 export default MealsOverviewScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
