@@ -8,6 +8,7 @@ interface Props {
 interface ExpensesContextType {
   expenses: Expense[];
   addExpense: ({ description, amount, date }: Expense) => void;
+  setExpenses: (expenses: Expense[]) => void;
   deleteExpense: (id: string) => void;
   updateExpense: (id: string, { description, amount, date }: Expense) => void;
 }
@@ -15,6 +16,7 @@ interface ExpensesContextType {
 export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [] as Expense[],
   addExpense: ({ description, amount, date }: Expense) => {},
+  setExpenses: (expenses) => {},
   deleteExpense: (id: string) => {},
   updateExpense: (id: string, { description, amount, date }: Expense) => {},
 });
@@ -22,8 +24,10 @@ export const ExpensesContext = createContext<ExpensesContextType>({
 function expensesReducer(state: Expense[], action: any) {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString() + Math.random().toString();
-      return [{ ...action.payload, id: id }, ...state];
+      return [action.payload, ...state];
+    case "SET":
+      const inverted = action.payload.reverse();
+      return inverted;
     case "UPDATE":
       const updatableExpenseIndex = state.findIndex(
         (expense: Expense) => expense.id === action.payload.id
@@ -41,10 +45,13 @@ function expensesReducer(state: Expense[], action: any) {
 }
 
 function ExpensesContextProvider({ children }: Props) {
-  const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
+  const [expensesState, dispatch] = useReducer(expensesReducer, []);
 
   function addExpense(expenseData: Expense) {
     dispatch({ type: "ADD", payload: expenseData });
+  }
+  function setExpenses(expenses: Expense[]) {
+    dispatch({ type: "SET", payload: expenses });
   }
 
   function deleteExpense(id: string) {
@@ -58,6 +65,7 @@ function ExpensesContextProvider({ children }: Props) {
   const value = {
     expenses: expensesState,
     addExpense: addExpense,
+    setExpenses: setExpenses,
     deleteExpense: deleteExpense,
     updateExpense: updateExpense,
   };
