@@ -4,8 +4,8 @@ import { ViewStyle } from "react-native";
 interface Props {
   children: JSX.Element | string | number;
   onPress: () => void;
-  mode: string;
-  style: ViewStyle;
+  mode?: string;
+  style?: ViewStyle;
 }
 
 function Button({ children, onPress, mode, style }: Props) {
