@@ -63,4 +63,4 @@ buck-out/
 # Expo
 .expo/*
 web-build/
-certs
+RNWithExpo/certs
